@@ -16,3 +16,4 @@ class Meal(models.Model):
     meal_type = models.CharField(choices=MEAL_TYPE, default=MEAL_TYPE[3][0])
     foods = models.ManyToManyField(Food, through='MealFood')
 
+class MealFood(models.Model):
