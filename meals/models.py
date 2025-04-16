@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from foods.models import Food
 
 class Meal(models.Model):
@@ -11,7 +11,7 @@ class Meal(models.Model):
 
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meals')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='meals')
     date = models.DateField()
     meal_type = models.CharField(choices=MEAL_TYPE, default=MEAL_TYPE[3][0])
     foods = models.ManyToManyField(Food, through='MealFood')

@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class HealthMetrics(models.Model):
-    user  = models.ForeignKey(User, on_delete=models.CASCADE, related_name='health_metrics')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='health_metrics')
     date = models.DateField()
     weight = models.DecimalField(max_digits=5, decimal_places=2)
     body_fat_percentage = models.DecimalField(max_length=5, decimal_places=2, null=True, blank=True),

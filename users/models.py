@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 from django.db import models
 
 
@@ -33,7 +34,7 @@ class UserProfile(models.Model):
         ('build_muscle', 'Build Muscle'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     height = models.DecimalField(max_digits=5, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)
     activity_level = models.CharField(max_length=20, choices=ACTIVITY_LEVEL_CHOICES, default=ACTIVITY_LEVEL_CHOICES[0][0])

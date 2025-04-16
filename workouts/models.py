@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from exercise.models import Exercise
 
 
 class Workout(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='workouts')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='workouts')
     date = models.DateField()
     duration = models.DurationField()
     exercises = models.ManyToManyField(Exercise, through='WorkoutExercise')
