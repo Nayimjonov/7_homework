@@ -11,3 +11,5 @@ class HealthMetrics(models.Model):
     blood_pressure_diastolic = models.PositiveIntegerField(null=True, blank=True)
     heart_rate = models.PositiveIntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return self.user.username
